@@ -1,0 +1,71 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class LinkedList {
+    Node head;
+    class Node {
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next = null;
+        }
+    }
+    
+    
+    public void insertAtHead(int data){
+        Node newNode = new Node(data);
+       if(head == null){
+           head = newNode;
+           return;
+       }
+        newNode.next = head;
+        head = newNode;
+    }
+    
+
+    public void deletion(int idx){
+         if(head == null){
+        System.out.print("List is empty");
+       }
+       if(idx==0){
+           head=head.next;
+       }
+       Node currNode = head;
+       int count=0;
+       while(currNode.next != null && count< idx-1){
+           currNode = currNode.next;
+           count++;
+       }
+       if(currNode == null || currNode.next == null){
+           System.out.print("Invalid");
+       }
+       currNode.next = currNode.next.next;
+    }
+    
+    
+    public void display(){
+        if(head == null){
+           System.out.println("List is empty");
+       }
+       Node currNode = head;
+       while(currNode != null){
+           System.out.print(currNode.data + " -> ");
+           currNode = currNode.next;
+       }
+        System.out.print("null");
+    }
+    
+    public static void main(String[] args) {
+        LinkedList l1 = new LinkedList();
+        l1.insertAtHead(5);
+        l1.insertAtHead(4);
+        l1.insertAtHead(3);
+        l1.insertAtHead(2);
+        l1.insertAtHead(1);
+
+          l1.deletion(2);
+        l1.display();
+        
+    }
+}
