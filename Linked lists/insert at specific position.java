@@ -1,57 +1,65 @@
-class LL{
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class LinkedList {
     Node head;
-    class Node{
+    class Node {
         int data;
         Node next;
-        
         Node(int data){
             this.data=data;
-            this.next= null;
+            this.next = null;
         }
     }
-        public  void insertAtPos(int idx, int data){
-            Node newNode = new Node(data);
-            if(idx == 0){
-                newNode.next=head;
-                head = newNode;
-                return;
-            }
-            Node temp = head;
-            int count = 0;
-            while(temp != null && count < idx-1){
-                temp = temp.next;
-                count++;
-            }
-            
-            if(temp == null){
-                System.out.println("invalid");
-                return;
-            }
-            newNode.next = temp.next;
-            temp.next = newNode;
-            
-        }
-     
-        public void printList(){
-            if (head==null){
-              System.out.println("List is empty");
-              return;
-            }
-            Node currNode = head;
-            while(currNode != null){
-                System.out.print(currNode.data + " -> ");
-                currNode = currNode.next;
 
-            }
-            System.out.println(" Null");
+    public void insertion(int idx, int data){
+         Node newNode = new Node(data);
+         
+       if(idx == 0){
+        newNode.next = head;
+        head = newNode;
+        return;
+       }
+       
+        if(head == null){
+           head = newNode;
+           return;
+       }
+       
+
+       int count=0;
+       Node currNode = head;
+        
+       while(currNode != null && count < idx-1){
+           currNode = currNode.next;
+           count++;
+       }
+       newNode.next = currNode.next;
+       currNode.next = newNode;
+      
+      if(currNode == null){
+            return;
         }
-        public static void main(String args[]){
-            LL l1 = new LL();
-            l1.insertAtPos(0,10);
-             l1.insertAtPos(1,20);
-             l1.insertAtPos(2,30);
-            l1.insertAtPos(3,40);
-            l1.printList();
-        }
+    }
+    public void display(){
+        if(head == null){
+           System.out.println("List is empty");
+       }
+       Node currNode = head;
+       while(currNode != null){
+           System.out.print(currNode.data + " -> ");
+           currNode = currNode.next;
+       }
+    System.out.print("null");
+    }
     
+    public static void main(String[] args) {
+        LinkedList l1 = new LinkedList();
+    l1.insertion(0,1);
+    l1.insertion(1,2);
+    l1.insertion(2,3);
+    l1.insertion(3,4);
+    l1.display();
+        
+    }
 }
